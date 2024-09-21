@@ -32,7 +32,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="./static/images/icon.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -55,24 +55,22 @@
               <a href="https://github.com/360ZMEM/">Guanwen Xie</a><sup>1</sup>,</span>
             <span class="author-block">
               <a href="https://2870325142.github.io/MiMi-Xu.github.io/">Jingzehua Xu</a><sup>1</sup>,</span>
-              <span class="author-block">
-                <a href="about:blank">Xiangwang Hou</a><sup>1</sup>
-              </span>,
+
             <span class="author-block">
-              <a href="about:blank">Yiyuan Yang</a><sup>2</sup>,
+              <a href="https://yyysjz1997.github.io/">Yiyuan Yang</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="about:blank">Yong Ren</a><sup>1</sup>,
+              <a href="https://github.com/Xiboxtg/">Yimian Ding</a><sup>1</sup>,
             </span>
             <span class="author-block">
-              <a href="about:blank">Dusit Niyato</a><sup>3</sup>
+              <a href="about:blank">Shuai Zhang</a><sup>3</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Tsinghua University,</span>
+            <span class="author-block"><sup>1</sup>Massachusetts Institute of Technology,</span>
             <span class="author-block"><sup>2</sup>University of Oxford,</span>
-            <span class="author-block"><sup>3</sup>Nanyang Technological University</span>
+            <span class="author-block"><sup>3</sup>New Jersey Institute of Technology</span>
           </div>
 
           <div class="column has-text-centered">
@@ -89,7 +87,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/360ZMEM/LLMRsearcher-code"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -113,16 +111,19 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method ....
+            Our approach is based on these observations:
           </p>
+          <ul>
+            <li>It's hard to design and balance reward components for multi-objective reinforcement learning (MORL). </li>
+            <li>It's hard for LLMs to design intricate reward functions on trial-and-error exploration and rectify wrong reward functions through implicit feedback. </li>
+            <li>LLMs, especially those on a smaller scale, have a severe decline in comprehension in long contexts.</li>
+            <li>LLMs are adept at summarizing and heuristically generating code with specific and clear task contexts, yet they are less proficient in tackling numerical contexts.</li>
+          </ul>
           <p>
-            Our approach ...
-          </p>
-          <p>
-            We show that ...
+            We propose <em>ERFSL</em>, an efficient reward function searcher using LLMs, which enables LLMs to be effective white-box searchers and highlights their advanced semantic understanding capabilities.
           </p>
         </div>
       </div>
@@ -138,7 +139,7 @@
 
 <section class="section" style="text-align: center;" >
   <h2 class="title is-3" style="text-align: center;">
-    MADiff Architecture
+    ERFSL Architecture & Example Prompts
   </h2>
   <img src="./static/images/archi.png"
        class="architecture-image"
@@ -147,28 +148,58 @@
 </section>
 
 
-  
-<section class="section">
+
+<section class="section" style="text-align: center;" >
   <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Training Strategy. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Training Strategy</h2>
-          <p>
-            We use angle and length constraints to optimize the directionality and stabability of predicted hand trajectories.
-          </p>
-        </div>
+  <h2 class="title is-3" style="text-align: center;">
+    Experimental Results & Example Case Studies
+  </h2>
+  <img src="./static/images/fin5.png"
+       class="architecture-image"
+       alt="architecture-image image."
+       style="width: 50%; display: block; margin: 0 auto;"/>
+       <p>The reward critic can effectively detect various errors and
+        then rewrite reward components based on the description and
+        variables of the Env class. 
+       For each component, only one iteration is needed to obtain the correct feedback results.</p>
+       <br></br>
+  <img src="./static/images/fin1.png"
+       class="architecture-image"
+       alt="architecture-image image."
+       style="width: 45%; display: block; margin: 0 auto;"/>
+       <p>The reward critic can rectify elusive errors in reward components, but EUREKA-S fails to do so.</p>
+      <br></br>
+  <img src="./static/images/fin2.png"
+       class="architecture-image"
+       alt="architecture-image image."
+       style="width: 26%; display: block; margin: 0 auto;"/>
+       <p>Two groups of weights generated by the reward weight initializer achieve Pareto solutions,
+       therefore no further search is required, or only a more refined search may be necessary.</p>
+       <br></br>
+  <img src="./static/images/fin6.png"
+       class="architecture-image"
+       alt="architecture-image image."
+       style="width: 70%; display: block; margin: 0 auto;"/>
+       <p>In the 500x off experiment, the reward weight searcher quickly recognizes excessive energy consumption optimization and tries various adjustment. 
+        However, EUREKA-M increases weights in a highly random manner ranther than decreasing the penalty of energy consumption.</p>
+       <br></br>
+  <img src="./static/images/fin3.png"
+       class="architecture-image"
+       alt="architecture-image image."
+       style="width: 26%; display: block; margin: 0 auto;"/>
+       <p>This figure shows the maximum value of
+        w_service/w_ec in five weight groups during training,
+       with the best performance among the five repetitions. The reward weight searcher adopts step sizes more flexibly, compared to GPT-4o w/o TLA and EUREKA-M. </p>
+       <br></br>
+  <img src="./static/images/fin4.png"
+       class="architecture-image"
+       alt="architecture-image image."
+       style="width: 50%; display: block; margin: 0 auto;"/>
+       <p> This table displays the number of iterations required to meet
+        user demand.The experiments are performed 5 times,
+        and the mean values and standard deviations are reported. Finally, on average only 5.2 iterations are needed to meet user requirements.</p>
       </div>
-      <!--/ Training Strategy. -->
-
-
-    </div>
-    <!--/ MDSS. -->
 </section>
-
 
 
 <section class="section">
@@ -176,8 +207,8 @@
     <!-- Examples. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h3 class="title is-3"><span class="dnerf">LLMRsearcher</span> Prompt samples</h3>
-        <br>
+        <h3 class="title is-3"><span class="dnerf">ERFSL</span> Prompt samples</h3>
+
         <object data="static/images/supplementary_LLM.pdf" width="100%" height="768px" type="application/pdf"></object>
       </div>
     </div>
@@ -185,17 +216,28 @@
     <!--/ Examples. -->
 </section>
 
-  
+
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{xie2024llmrsearcher,
       title={Large Language Models as Efficient Reward Function Searchers for Custom-Environment Multi-Objective Reinforcement Learning},
-      author={Xie, Guanwen and Xu, Jingzehua and Hou, Xiangwang and Yang, Yiyuan and Ren, Yong and Niyato, Dusit},
+      author={Xie, Guanwen and Xu, Jingzehua and and Yang, Yiyuan and Ren, Yong and Ding, Yimian and Zhang, Shuai},
       journal={arXiv preprint arXiv:2409.02428},
       year={2024}
     }
 }</code></pre>
+  </div>
+</section>
+
+<section class="section" id="BibTeX"></section>
+  <div class="container is-max-desktop content">
+    <h2 class="title"></h2>
+    <img src="./static/images/FIN.jpg"
+       class="architecture-image"
+       alt="architecture-image image."
+       style="width: 50%; display: block; margin: 0 auto;"/>
+       <p><a href="https://en.wikipedia.org/wiki/Endro!">©ERP / ENDRO! Production Committee</a></p>
   </div>
 </section>
 
@@ -207,7 +249,7 @@
          href="https://arxiv.org/pdf/2409.02428.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/360ZMEM" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/360ZMEM/LLMRsearcher-code" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
     </div>
