@@ -6,7 +6,7 @@ If you find it useful for your work please cite:
 ```
 @article{xie2024llmrsearcher,
       title={Large Language Models as Efficient Reward Function Searchers for Custom-Environment Multi-Objective Reinforcement Learning},
-      author={Xie, Guanwen and Xu, Jingzehua and Hou, Xiangwang and Yang, Yiyuan and Ren, Yong and Niyato, Dusit},
+      author={Xie, Guanwen and Xu, Jingzehua and and Yang, Yiyuan and Ren, Yong and Ding, Yimian and Zhang, Shuai},
       journal={arXiv preprint arXiv:2409.02428},
       year={2024}
     }
