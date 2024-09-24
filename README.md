@@ -1,4 +1,4 @@
-# Nerfies
+# LLMRsearcher
 
 This is the repository that contains source code for the [LLMls as Efficient Reward Function Searchers for Custom-Environment MORL](https://360zmem.github.io/LLMRsearcher).
 
