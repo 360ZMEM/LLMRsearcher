@@ -1,6 +1,6 @@
 # LLMRsearcher
 
-This is the repository that contains source code for the [LLMls as Efficient Reward Function Searchers for Custom-Environment MORL](https://360zmem.github.io/LLMRsearcher).
+This is the repository that contains source code for the [LLMs as Efficient Reward Function Searchers for Custom-Environment MORL](https://360zmem.github.io/LLMRsearcher).
 
 If you find it useful for your work please cite:
 ```
@@ -10,7 +10,6 @@ If you find it useful for your work please cite:
       journal={arXiv preprint arXiv:2409.02428},
       year={2024}
     }
-}
 ```
 
 # Website License
